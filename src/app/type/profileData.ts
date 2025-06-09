@@ -1,4 +1,4 @@
-type WorkExp = {
+export type WorkExp = {
     title: string;
     company: string;
     date: string;
@@ -6,13 +6,13 @@ type WorkExp = {
     desc: string;
 };
 
-type Skill = {
+export type Skill = {
     name: string;
     level: number;
     tech: string;
 };
 
-type Education = {
+export type Education = {
     degree: string;
     school: string;
     date: string;
@@ -20,7 +20,7 @@ type Education = {
     details: string;
 };
 
-type Social = {
+export type Social = {
     name: string;
     url: string;
     iconName: string;

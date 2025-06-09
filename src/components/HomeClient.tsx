@@ -1,13 +1,13 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import { AnimatedCounter } from '@/components/AnimatedCounter';
 import Header from '@/components/Header';
 import { useInView } from 'react-intersection-observer';
 import { LinkedInIcon } from '@/icon/LinkedInIcon';
 import { EmailIcon } from '@/icon/EmailIcon';
 import { InstagramIcon } from '@/icon/InstagramIcon';
-import { ProfileData } from '@/app/type/profileData';
+import { Education, ProfileData, Skill, Social, WorkExp } from '@/app/type/profileData';
+import Image from 'next/image';
 
 export default function HomeClient({ profileData }: { profileData: ProfileData }) {
     const { ref: skillsRef, inView: isSkillsInView } = useInView({
@@ -31,7 +31,7 @@ export default function HomeClient({ profileData }: { profileData: ProfileData }
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                         <div className="text-white">
                             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                                Hi, I'm <span className="text-blue-400">Teddy Yee</span>
+                                Hi, I&rsquo;m <span className="text-blue-400">Teddy Yee</span>
                             </h1>
                             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold mb-6 text-blue-300">
                                 Full Stack Developer
@@ -55,7 +55,7 @@ export default function HomeClient({ profileData }: { profileData: ProfileData }
                                 </button>
                             </div>
                             <div className="mt-12">
-                                <p className="text-gray-400 mb-4 italic">Tech I’m comfortable with professionally</p>
+                                <p className="text-gray-400 mb-4 italic">Tech I&rsquo;m comfortable with professionally</p>
                                 <div className="flex flex-wrap gap-3">
                                     {profileData.about.professionalTech.map((tech: string) => (
                                         <span
@@ -67,7 +67,7 @@ export default function HomeClient({ profileData }: { profileData: ProfileData }
                                     ))}
                                 </div>
 
-                                <p className="text-gray-400 mt-8 mb-4 italic">Tech I’ve used in academic and personal projects:</p>
+                                <p className="text-gray-400 mt-8 mb-4 italic">Tech I&rsquo;ve used in academic and personal projects:</p>
                                 <div className="flex flex-wrap gap-3">
                                     {profileData.about.academicTech.map((tech: string) => (
                                         <span
@@ -83,10 +83,11 @@ export default function HomeClient({ profileData }: { profileData: ProfileData }
                         {/* IMAGE */}
                         <div className="relative">
                             <div className="relative w-full aspect-[16/16] max-w-[530px] bg-blue-900/20 rounded-2xl overflow-hidden border-2 border-blue-400/30">
-                                <img
+                                <Image
                                     src="/teddy.jpeg"
                                     alt="Hero Illustration"
-                                    className="absolute inset-0 w-full h-full object-cover rounded-2xl"
+                                    fill
+                                    className="object-cover rounded-2xl"
                                 />
                                 <div className="absolute top-0 left-0 w-20 h-20 border-t-2 border-l-2 border-blue-400/50 rounded-tl-2xl"></div>
                                 <div className="absolute bottom-0 right-0 w-20 h-20 border-b-2 border-r-2 border-blue-400/50 rounded-br-2xl"></div>
@@ -116,7 +117,7 @@ export default function HomeClient({ profileData }: { profileData: ProfileData }
                             <div className="bg-blue-900/20 p-8 rounded-2xl border border-blue-400/20 mb-8">
                                 <h3 className="text-2xl font-semibold text-white mb-6">Working Experience</h3>
                                 <div className="space-y-4">
-                                    {profileData.workExperience.map((exp: any, i: number) => (
+                                    {profileData.workExperience.map((exp: WorkExp, i: number) => (
                                         <div key={i} className="bg-blue-900/30 p-4 rounded-xl border border-blue-400/20">
                                             <h4 className="text-lg font-semibold text-white mb-1">{exp.title}</h4>
                                             <p className="text-blue-300 text-sm mb-1">{exp.company} — {exp.date}</p>
@@ -132,8 +133,8 @@ export default function HomeClient({ profileData }: { profileData: ProfileData }
                             <div ref={skillsRef} className="bg-blue-900/20 p-8 rounded-2xl border border-blue-400/20 mb-8">
                                 <h3 className="text-2xl font-semibold text-white mb-6">My Skills</h3>
                                 <div className="space-y-4">
-                                    {profileData.skills.map((skill: any) => (
-                                        <div key={skill.name}>
+                                    {profileData.skills.map((skill: Skill, i: number) => (
+                                        <div key={i}>
                                             <div className="flex justify-between mb-1">
                                                 <span className="text-blue-300 font-medium">{skill.name}</span>
                                                 <span className="text-gray-400 text-sm">
@@ -155,8 +156,8 @@ export default function HomeClient({ profileData }: { profileData: ProfileData }
                             <div className="bg-blue-900/20 p-8 rounded-2xl border border-blue-400/20">
                                 <h3 className="text-2xl font-semibold text-white mb-6">Education</h3>
                                 <div className="space-y-4">
-                                    {profileData.education.map((edu: any) => (
-                                        <div key={edu.degree} className="bg-blue-900/30 p-4 rounded-xl border border-blue-400/20">
+                                    {profileData.education.map((edu: Education, i: number) => (
+                                        <div key={i} className="bg-blue-900/30 p-4 rounded-xl border border-blue-400/20">
                                             <h4 className="text-lg font-semibold text-white mb-1">{edu.degree}</h4>
                                             <p className="text-blue-300 text-sm mb-1">{edu.school} — {edu.date}</p>
                                             <p className="text-gray-400 text-xs mb-2">{edu.location}</p>
@@ -176,7 +177,7 @@ export default function HomeClient({ profileData }: { profileData: ProfileData }
                         Contact <span className="text-blue-400">Me</span>
                     </h2>
                     <div className="flex justify-center items-center gap-8">
-                        {profileData.socials.map((social: any) => {
+                        {profileData.socials.map((social: Social) => {
                             let IconComponent = null;
                             if (social.iconName === 'LinkedInIcon') IconComponent = <LinkedInIcon />;
                             else if (social.iconName === 'InstagramIcon') IconComponent = <InstagramIcon />;
