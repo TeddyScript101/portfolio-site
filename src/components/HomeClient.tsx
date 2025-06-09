@@ -29,7 +29,20 @@ export default function HomeClient({ profileData }: { profileData: ProfileData }
             <section id="home" className="min-h-screen pt-20 flex items-center">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                        <div className="text-white">
+                        <div className="relative order-1 md:order-2">
+                            <div className="relative w-full aspect-[16/16] max-w-[530px] mx-auto bg-blue-900/20 rounded-2xl overflow-hidden border-2 border-blue-400/30">
+                                <Image
+                                    src="/teddy.jpeg"
+                                    alt="Hero Illustration"
+                                    fill
+                                    className="object-cover rounded-2xl"
+                                />
+                                <div className="absolute top-0 left-0 w-20 h-20 border-t-2 border-l-2 border-blue-400/50 rounded-tl-2xl"></div>
+                                <div className="absolute bottom-0 right-0 w-20 h-20 border-b-2 border-r-2 border-blue-400/50 rounded-br-2xl"></div>
+                            </div>
+                        </div>
+
+                        <div className="text-white order-2 md:order-1">
                             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
                                 Hi, I&rsquo;m <span className="text-blue-400">Teddy Yee</span>
                             </h1>
@@ -39,14 +52,15 @@ export default function HomeClient({ profileData }: { profileData: ProfileData }
                             <p className="text-lg mb-8 text-gray-300 max-w-lg">
                                 {profileData.homeIntroText}
                             </p>
-                            {/* BUTTONS */}
                             <div className="flex flex-wrap gap-4">
-                                <button
-                                    onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
-                                    className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105"
-                                >
-                                    View My Work
-                                </button>
+                                <a href='https://github.com/TeddyScript101' target="_blank" rel="noopener noreferrer">
+                                    <button
+                                        // onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+                                        className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105"
+                                    >
+                                        View My Work
+                                    </button>
+                                </a>
                                 <button
                                     onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
                                     className="border-2 border-blue-400 text-blue-400 hover:bg-blue-400/10 px-6 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105"
@@ -78,19 +92,6 @@ export default function HomeClient({ profileData }: { profileData: ProfileData }
                                         </span>
                                     ))}
                                 </div>
-                            </div>
-                        </div>
-                        {/* IMAGE */}
-                        <div className="relative">
-                            <div className="relative w-full aspect-[16/16] max-w-[530px] bg-blue-900/20 rounded-2xl overflow-hidden border-2 border-blue-400/30">
-                                <Image
-                                    src="/teddy.jpeg"
-                                    alt="Hero Illustration"
-                                    fill
-                                    className="object-cover rounded-2xl"
-                                />
-                                <div className="absolute top-0 left-0 w-20 h-20 border-t-2 border-l-2 border-blue-400/50 rounded-tl-2xl"></div>
-                                <div className="absolute bottom-0 right-0 w-20 h-20 border-b-2 border-r-2 border-blue-400/50 rounded-br-2xl"></div>
                             </div>
                         </div>
                     </div>
