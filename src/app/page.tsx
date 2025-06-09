@@ -1,12 +1,9 @@
 import HomeClient from '@/components/HomeClient';
 
 export default async function Home() {
-  const endpoint = process.env.PROFILE_API_ENDPOINT;
-  if (!endpoint) {
-    throw new Error('PROFILE_API_ENDPOINT environment variable is not set');
-  }
+  const baseUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000';
+  const res = await fetch(`${baseUrl}/api/profile`, { cache: 'no-cache' });
 
-  const res = await fetch(endpoint, { cache: 'no-cache' });
   const profileData = await res.json();
 
   return <HomeClient profileData={profileData} />;
