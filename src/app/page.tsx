@@ -9,7 +9,7 @@ export default async function Home() {
 
 
     console.log(`Base URL: ${baseUrl}`);
-    const res = await fetch(`${baseUrl}/api/profile`, { cache: 'no-cache' });
+    const res = await fetch(`${baseUrl}/api/profile`, { next: { revalidate: 0 } });
     if (!res.ok) {
       throw new Error(`Failed to fetch: ${res.status} ${res.statusText}`);
     }
