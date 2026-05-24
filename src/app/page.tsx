@@ -8,22 +8,24 @@ export default async function Home() {
   const cookieStore = await cookies();
   const cookieHeader = cookieStore.getAll().map(c => `${c.name}=${c.value}`).join('; ');
 
-  try {
-    const res = await fetch(`${baseUrl}/api/profile`, {
-      headers: {
-        cookie: cookieHeader
-      },
-      cache: 'no-cache'
-    });
+  const headers = { cookie: cookieHeader };
 
-    if (!res.ok) {
-      throw new Error(`Failed to fetch: ${res.status} ${res.statusText}`);
+  try {
+    const [profileRes, projectsRes] = await Promise.all([
+      fetch(`${baseUrl}/api/profile`, { headers, cache: 'no-cache' }),
+      fetch(`${baseUrl}/api/projects`, { headers, cache: 'no-cache' }),
+    ]);
+
+    if (!profileRes.ok) {
+      throw new Error(`Failed to fetch profile: ${profileRes.status} ${profileRes.statusText}`);
     }
 
-    const profileData = await res.json();
-    return <HomeClient profileData={profileData} />;
+    const profileData = await profileRes.json();
+    const projects = projectsRes.ok ? await projectsRes.json() : [];
+
+    return <HomeClient profileData={profileData} projects={projects} />;
   } catch (error) {
-    console.error('Error fetching profile data:', error);
+    console.error('Error fetching page data:', error);
     return <div>Error loading profile.</div>;
   }
 }

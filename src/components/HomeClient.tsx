@@ -2,11 +2,13 @@
 
 import { AnimatedCounter } from '@/components/AnimatedCounter';
 import Header from '@/components/Header';
+import ProjectsSection from '@/components/ProjectsSection';
 import { useInView } from 'react-intersection-observer';
 import { LinkedInIcon } from '@/icon/LinkedInIcon';
 import { EmailIcon } from '@/icon/EmailIcon';
 import { InstagramIcon } from '@/icon/InstagramIcon';
 import { Education, ProfileData, Skill, Social, WorkExp } from '@/app/type/profileData';
+import { Project } from '@/app/type/project';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -41,6 +43,8 @@ const TECH_ICONS: Record<string, string> = {
     'GCP':            sk('gcp'),
     'Jenkins':        sk('jenkins'),
     'Android Native': sk('androidstudio'),
+    'Storybook':       si('storybook', 'ff4785'),
+    'Swagger':         si('swagger', '85ea2d'),
     'Claude Code':     si('anthropic'),
     'GitHub Copilot':  si('githubcopilot'),
     'Gemini':          si('googlegemini'),
@@ -71,7 +75,7 @@ function TechChip({ name, className }: { name: string; className: string }) {
     );
 }
 
-export default function HomeClient({ profileData }: { profileData: ProfileData }) {
+export default function HomeClient({ profileData, projects }: { profileData: ProfileData; projects: Project[] }) {
     const { ref: skillsRef, inView: isSkillsInView } = useInView({
         threshold: 0.2,
         triggerOnce: false,
@@ -296,6 +300,8 @@ export default function HomeClient({ profileData }: { profileData: ProfileData }
                     </div>
                 </div>
             </section>
+
+            <ProjectsSection projects={projects} />
 
             <section id="contact" className="min-h-screen pt-20 bg-[#0D2D4A] flex items-center justify-center">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
