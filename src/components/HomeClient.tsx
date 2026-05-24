@@ -29,15 +29,82 @@ export default function HomeClient({ profileData }: { profileData: ProfileData }
             <Header />
             <section id="home" className="min-h-screen pt-20 flex items-center">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
-                        {/* Text first in DOM so it appears above the photo on mobile */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3 md:gap-x-12 md:gap-y-12 items-center">
+                        {/* Text column: on mobile only shows h1 + h2; on desktop shows all text */}
                         <div className="text-white">
                             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
                                 Hi, I&rsquo;m <span className="text-blue-400">Teddy Yee</span>
                             </h1>
-                            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold mb-6 text-blue-300">
+                            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold mb-0 md:mb-6 text-blue-300">
                                 Full Stack Developer
                             </h2>
+                            {/* Hidden on mobile; shown on desktop inside this column */}
+                            <div className="hidden md:block">
+                                <p className="text-lg mb-8 text-gray-300 max-w-lg">
+                                    {profileData.homeIntroText}
+                                </p>
+                                <div className="flex flex-wrap gap-4">
+                                    <a href='https://github.com/TeddyScript101' target="_blank" rel="noopener noreferrer">
+                                        <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105">
+                                            View My Work
+                                        </button>
+                                    </a>
+                                    <Link
+                                        href="/blog"
+                                        className="bg-blue-900/50 hover:bg-blue-900/80 border border-blue-400/40 hover:border-blue-400/70 text-blue-300 hover:text-blue-200 px-6 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105"
+                                    >
+                                        Read My Blog
+                                    </Link>
+                                    <button
+                                        onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                                        className="border-2 border-blue-400 text-blue-400 hover:bg-blue-400/10 px-6 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105"
+                                    >
+                                        Contact Me
+                                    </button>
+                                </div>
+                                <div className="mt-12">
+                                    <p className="text-gray-400 mb-4 italic">Tech I&rsquo;m comfortable with professionally</p>
+                                    <div className="flex flex-wrap gap-3">
+                                        {profileData.about.professionalTech.map((tech: string) => (
+                                            <span
+                                                key={tech}
+                                                className="bg-blue-900/50 text-blue-300 px-4 py-2 rounded-full text-sm font-medium"
+                                            >
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+                                    <p className="text-gray-400 mt-8 mb-4 italic">Tech I&rsquo;ve used in academic and personal projects:</p>
+                                    <div className="flex flex-wrap gap-3">
+                                        {profileData.about.academicTech.map((tech: string) => (
+                                            <span
+                                                key={tech}
+                                                className="bg-blue-900/50 text-blue-300 px-4 py-2 rounded-full text-sm font-medium"
+                                            >
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Photo: on mobile sits between h1/h2 and the rest of the text */}
+                        <div className="relative">
+                            <div className="relative w-full aspect-square max-w-[260px] md:max-w-[530px] mx-auto bg-blue-900/20 rounded-2xl overflow-hidden border-2 border-blue-400/30">
+                                <Image
+                                    src="/teddy.jpeg"
+                                    alt="Hero Illustration"
+                                    fill
+                                    className="object-cover rounded-2xl"
+                                />
+                                <div className="absolute top-0 left-0 w-20 h-20 border-t-2 border-l-2 border-blue-400/50 rounded-tl-2xl"></div>
+                                <div className="absolute bottom-0 right-0 w-20 h-20 border-b-2 border-r-2 border-blue-400/50 rounded-br-2xl"></div>
+                            </div>
+                        </div>
+
+                        {/* Mobile-only: description, buttons, and tech tags below the photo */}
+                        <div className="md:hidden text-white">
                             <p className="text-lg mb-8 text-gray-300 max-w-lg">
                                 {profileData.homeIntroText}
                             </p>
@@ -72,7 +139,6 @@ export default function HomeClient({ profileData }: { profileData: ProfileData }
                                         </span>
                                     ))}
                                 </div>
-
                                 <p className="text-gray-400 mt-8 mb-4 italic">Tech I&rsquo;ve used in academic and personal projects:</p>
                                 <div className="flex flex-wrap gap-3">
                                     {profileData.about.academicTech.map((tech: string) => (
@@ -84,19 +150,6 @@ export default function HomeClient({ profileData }: { profileData: ProfileData }
                                         </span>
                                     ))}
                                 </div>
-                            </div>
-                        </div>
-
-                        <div className="relative">
-                            <div className="relative w-full aspect-square max-w-[400px] md:max-w-[530px] mx-auto bg-blue-900/20 rounded-2xl overflow-hidden border-2 border-blue-400/30">
-                                <Image
-                                    src="/teddy.jpeg"
-                                    alt="Hero Illustration"
-                                    fill
-                                    className="object-cover rounded-2xl"
-                                />
-                                <div className="absolute top-0 left-0 w-20 h-20 border-t-2 border-l-2 border-blue-400/50 rounded-tl-2xl"></div>
-                                <div className="absolute bottom-0 right-0 w-20 h-20 border-b-2 border-r-2 border-blue-400/50 rounded-br-2xl"></div>
                             </div>
                         </div>
                     </div>
@@ -128,7 +181,11 @@ export default function HomeClient({ profileData }: { profileData: ProfileData }
                                             <h4 className="text-lg font-semibold text-white mb-1">{exp.title}</h4>
                                             <p className="text-blue-300 text-sm mb-1">{exp.company} — {exp.date}</p>
                                             <p className="text-gray-400 text-xs mb-2">{exp.location}</p>
-                                            <p className="text-gray-300 text-sm">{exp.desc}</p>
+                                            <ul className="list-disc list-outside pl-4 space-y-1">
+                                                {exp.highlights.map((point, j) => (
+                                                    <li key={j} className="text-gray-300 text-sm leading-relaxed">{point}</li>
+                                                ))}
+                                            </ul>
                                         </div>
                                     ))}
                                 </div>

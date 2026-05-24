@@ -3,7 +3,7 @@ export type WorkExp = {
     company: string;
     date: string;
     location: string;
-    desc: string;
+    highlights: string[];
 };
 
 export type Skill = {

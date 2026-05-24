@@ -84,8 +84,8 @@ export default async function BlogPostPage({
                 {/* Divider */}
                 <div className="border-t border-blue-400/20 mb-10" />
 
-                {/* Markdown content */}
-                <MarkdownRenderer content={post.content} />
+                {/* Markdown content — strip leading # heading to avoid duplicating the title above */}
+                <MarkdownRenderer content={post.content.replace(/^#[^\n]*\n+/, '')} />
             </main>
         </div>
     );
