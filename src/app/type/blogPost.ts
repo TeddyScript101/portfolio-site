@@ -8,4 +8,6 @@ export type BlogPost = {
     content: string;
     published: boolean;
     readTime?: number; // minutes, computed by the API from word count
+    githubUrl?: string;
+    demoUrl?: string;
 };
