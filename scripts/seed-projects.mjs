@@ -35,6 +35,23 @@ const projects = [
         order: 1,
     },
     {
+        slug: 'beanworks-storybook',
+        title: 'BeanWorks – Component Library (Storybook)',
+        description:
+            'Interactive component library for the BeanWorks design system. Browse and test UI components — auth forms, product cards, membership cards, badges, and more — with live controls and documentation.',
+        thumbnail: '/projects/beanworks-storybook.png',
+        demoUrl: 'https://coffee-shop-storybook.vercel.app/?path=/docs/components-membership-membershipcard--docs',
+        githubUrl: 'https://github.com/TeddyScript101/coffee-shop-frontend',
+        techStack: ['Storybook', 'ReactJS', 'TypeScript', 'Tailwind'],
+        relatedBlogs: [
+            {
+                title: 'How I structured a React frontend for a coffee shop app',
+                slug: 'beanworks-react-frontend-structure',
+            },
+        ],
+        order: 2,
+    },
+    {
         slug: 'beanworks-api-swagger',
         title: 'BeanWorks – REST API (Swagger)',
         description:
@@ -49,7 +66,7 @@ const projects = [
                 slug: 'building-coffee-shop-api-dotnet-ef-core-tpt',
             },
         ],
-        order: 2,
+        order: 3,
     },
     {
         slug: 'beanworks-api-scalar',
@@ -66,7 +83,7 @@ const projects = [
                 slug: 'building-coffee-shop-api-dotnet-ef-core-tpt',
             },
         ],
-        order: 3,
+        order: 4,
     },
 ];
 
