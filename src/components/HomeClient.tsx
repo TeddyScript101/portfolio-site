@@ -224,7 +224,11 @@ export default function HomeClient({ profileData }: { profileData: ProfileData }
                                             <h4 className="text-lg font-semibold text-white mb-1">{edu.degree}</h4>
                                             <p className="text-blue-300 text-sm mb-1">{edu.school} — {edu.date}</p>
                                             <p className="text-gray-400 text-xs mb-2">{edu.location}</p>
-                                            <p className="text-gray-300 text-sm">{edu.details}</p>
+                                            <ul className="list-disc list-outside pl-4 space-y-1">
+                                                {edu.highlights.map((point, j) => (
+                                                    <li key={j} className="text-gray-300 text-sm leading-relaxed">{point}</li>
+                                                ))}
+                                            </ul>
                                         </div>
                                     ))}
                                 </div>

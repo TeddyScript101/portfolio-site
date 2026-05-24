@@ -17,7 +17,7 @@ export type Education = {
     school: string;
     date: string;
     location: string;
-    details: string;
+    highlights: string[];
 };
 
 export type Social = {
