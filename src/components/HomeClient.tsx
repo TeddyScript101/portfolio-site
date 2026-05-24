@@ -10,52 +10,53 @@ import { Education, ProfileData, Skill, Social, WorkExp } from '@/app/type/profi
 import Image from 'next/image';
 import Link from 'next/link';
 
-// Maps display names to skillicons.dev slugs
+// Helper to build icon URLs from two CDNs
+const si = (slug: string, color = '93c5fd') =>
+    `https://cdn.simpleicons.org/${slug}/${color}`;
+const sk = (slug: string) =>
+    `https://skillicons.dev/icons?i=${slug}&theme=dark`;
+
+// Maps display names to icon URLs
 const TECH_ICONS: Record<string, string> = {
-    'ReactJS':        'react',
-    'React Native':   'react',
-    'Next.js':        'nextjs',
-    'TypeScript':     'ts',
-    'Tailwind':       'tailwind',
-    'Material UI':    'materialui',
-    'styled-components': 'styledcomponents',
-    'Node.js':        'nodejs',
-    'Express':        'express',
-    'Nest.js':        'nestjs',
-    'Fastify':        'fastify',
-    'GraphQL':        'graphql',
-    'MongoDB':        'mongodb',
-    'PostgreSQL':     'postgres',
-    'MySQL':          'mysql',
-    'Docker':         'docker',
-    'Python':         'python',
-    'Java':           'java',
-    'C#':             'cs',
-    'ASP.NET':        'dotnet',
-    'Azure':          'azure',
-    'Kubernetes':     'kubernetes',
-    'Terraform':      'terraform',
-    'GCP':            'gcp',
-    'Jenkins':        'jenkins',
-    'Android Native': 'androidstudio',
-    'GitHub Copilot': 'github',
-    'ChatGPT':        'openai',
-    'Gemini':         'gemini',
+    // Professional tech — skillicons.dev (handles dark theme natively)
+    'ReactJS':        sk('react'),
+    'React Native':   sk('react'),
+    'Next.js':        sk('nextjs'),
+    'TypeScript':     sk('ts'),
+    'Tailwind':       sk('tailwind'),
+    'Material UI':    sk('materialui'),
+    'Node.js':        sk('nodejs'),
+    'Express':        sk('express'),
+    'Nest.js':        sk('nestjs'),
+    'MongoDB':        sk('mongodb'),
+    'PostgreSQL':     sk('postgres'),
+    'MySQL':          sk('mysql'),
+    'Docker':         sk('docker'),
+    // Academic tech
+    'Python':         sk('python'),
+    'Java':           sk('java'),
+    'C#':             sk('cs'),
+    'ASP.NET':        sk('dotnet'),
+    'Azure':          sk('azure'),
+    'Kubernetes':     sk('kubernetes'),
+    'Terraform':      sk('terraform'),
+    'GCP':            sk('gcp'),
+    'Jenkins':        sk('jenkins'),
+    'Android Native': sk('androidstudio'),
+    // AI tools — Simple Icons (violet-300 tint to match chip colour)
+    'Claude Code':    si('anthropic',    'c4b5fd'),
+    'GitHub Copilot': si('github',       'c4b5fd'),
+    'ChatGPT':        si('openai',       'c4b5fd'),
+    'Gemini':         si('googlegemini', 'c4b5fd'),
 };
 
 function TechChip({ name, className }: { name: string; className: string }) {
-    const slug = TECH_ICONS[name];
+    const iconUrl = TECH_ICONS[name];
     return (
         <span className={`inline-flex items-center gap-1.5 ${className}`}>
-            {slug && (
+            {iconUrl && (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img
-                    src={`https://skillicons.dev/icons?i=${slug}&theme=dark`}
-                    alt=""
-                    width={16}
-                    height={16}
-                    className="w-4 h-4 shrink-0"
-                />
+                <img src={iconUrl} alt="" width={16} height={16} className="w-4 h-4 shrink-0" />
             )}
             {name}
         </span>
