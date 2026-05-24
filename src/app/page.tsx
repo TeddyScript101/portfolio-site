@@ -1,10 +1,9 @@
 import HomeClient from '@/components/HomeClient';
 import { cookies } from 'next/headers';
+import { getBaseUrl } from '@/lib/baseUrl';
 
 export default async function Home() {
-  const baseUrl = process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : 'http://localhost:3000';
+  const baseUrl = getBaseUrl();
 
   const cookieStore = await cookies();
   const cookieHeader = cookieStore.getAll().map(c => `${c.name}=${c.value}`).join('; ');

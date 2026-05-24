@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+/* Let CodeBlock control the background — disable the hljs default */
+.hljs {
+    background: transparent !important;
+    padding: 0 !important;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
