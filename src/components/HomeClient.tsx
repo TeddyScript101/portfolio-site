@@ -8,6 +8,7 @@ import { EmailIcon } from '@/icon/EmailIcon';
 import { InstagramIcon } from '@/icon/InstagramIcon';
 import { Education, ProfileData, Skill, Social, WorkExp } from '@/app/type/profileData';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function HomeClient({ profileData }: { profileData: ProfileData }) {
     const { ref: skillsRef, inView: isSkillsInView } = useInView({
@@ -28,21 +29,9 @@ export default function HomeClient({ profileData }: { profileData: ProfileData }
             <Header />
             <section id="home" className="min-h-screen pt-20 flex items-center">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                        <div className="relative order-1 md:order-2">
-                            <div className="relative w-full aspect-[16/16] max-w-[530px] mx-auto bg-blue-900/20 rounded-2xl overflow-hidden border-2 border-blue-400/30">
-                                <Image
-                                    src="/teddy.jpeg"
-                                    alt="Hero Illustration"
-                                    fill
-                                    className="object-cover rounded-2xl"
-                                />
-                                <div className="absolute top-0 left-0 w-20 h-20 border-t-2 border-l-2 border-blue-400/50 rounded-tl-2xl"></div>
-                                <div className="absolute bottom-0 right-0 w-20 h-20 border-b-2 border-r-2 border-blue-400/50 rounded-br-2xl"></div>
-                            </div>
-                        </div>
-
-                        <div className="text-white order-2 md:order-1">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+                        {/* Text first in DOM so it appears above the photo on mobile */}
+                        <div className="text-white">
                             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
                                 Hi, I&rsquo;m <span className="text-blue-400">Teddy Yee</span>
                             </h1>
@@ -54,13 +43,16 @@ export default function HomeClient({ profileData }: { profileData: ProfileData }
                             </p>
                             <div className="flex flex-wrap gap-4">
                                 <a href='https://github.com/TeddyScript101' target="_blank" rel="noopener noreferrer">
-                                    <button
-                                        // onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
-                                        className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105"
-                                    >
+                                    <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105">
                                         View My Work
                                     </button>
                                 </a>
+                                <Link
+                                    href="/blog"
+                                    className="bg-blue-900/50 hover:bg-blue-900/80 border border-blue-400/40 hover:border-blue-400/70 text-blue-300 hover:text-blue-200 px-6 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105"
+                                >
+                                    Read My Blog
+                                </Link>
                                 <button
                                     onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
                                     className="border-2 border-blue-400 text-blue-400 hover:bg-blue-400/10 px-6 py-3 rounded-lg font-medium transition-all duration-300 transform hover:scale-105"
@@ -94,6 +86,19 @@ export default function HomeClient({ profileData }: { profileData: ProfileData }
                                 </div>
                             </div>
                         </div>
+
+                        <div className="relative">
+                            <div className="relative w-full aspect-square max-w-[400px] md:max-w-[530px] mx-auto bg-blue-900/20 rounded-2xl overflow-hidden border-2 border-blue-400/30">
+                                <Image
+                                    src="/teddy.jpeg"
+                                    alt="Hero Illustration"
+                                    fill
+                                    className="object-cover rounded-2xl"
+                                />
+                                <div className="absolute top-0 left-0 w-20 h-20 border-t-2 border-l-2 border-blue-400/50 rounded-tl-2xl"></div>
+                                <div className="absolute bottom-0 right-0 w-20 h-20 border-b-2 border-r-2 border-blue-400/50 rounded-br-2xl"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -105,7 +110,7 @@ export default function HomeClient({ profileData }: { profileData: ProfileData }
                     </h2>
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                         <div>
-                            <div className="bg-blue-900/20 p-8 rounded-2xl border border-blue-400/20 mb-8">
+                            <div className="bg-blue-900/20 p-5 sm:p-8 rounded-2xl border border-blue-400/20 mb-8">
                                 <h3 className="text-2xl font-semibold text-white mb-4">My Journey</h3>
                                 <p className="text-gray-300 mb-4">
                                     {profileData.about.aboutText1}
@@ -115,7 +120,7 @@ export default function HomeClient({ profileData }: { profileData: ProfileData }
                                 </p>
                             </div>
 
-                            <div className="bg-blue-900/20 p-8 rounded-2xl border border-blue-400/20 mb-8">
+                            <div className="bg-blue-900/20 p-5 sm:p-8 rounded-2xl border border-blue-400/20 mb-8">
                                 <h3 className="text-2xl font-semibold text-white mb-6">Working Experience</h3>
                                 <div className="space-y-4">
                                     {profileData.workExperience.map((exp: WorkExp, i: number) => (
@@ -177,7 +182,7 @@ export default function HomeClient({ profileData }: { profileData: ProfileData }
                     <h2 className="text-3xl sm:text-4xl font-bold text-white mb-12 text-center">
                         Contact <span className="text-blue-400">Me</span>
                     </h2>
-                    <div className="flex justify-center items-center gap-8">
+                    <div className="flex flex-wrap justify-center items-center gap-8">
                         {profileData.socials.map((social: Social) => {
                             let IconComponent = null;
                             if (social.iconName === 'LinkedInIcon') IconComponent = <LinkedInIcon />;

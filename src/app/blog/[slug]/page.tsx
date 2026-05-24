@@ -39,7 +39,7 @@ export default async function BlogPostPage({
     return (
         <div className="min-h-screen bg-gradient-to-br from-[#081B29] via-[#0D2D4A] to-[#134074]">
             <BlogHeader />
-            <main className="container mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20 max-w-3xl">
+            <main className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32 pb-20 max-w-3xl">
                 {/* Back link */}
                 <Link
                     href="/blog"

@@ -319,7 +319,7 @@ export default function BlogListClient({ initialPosts }: Props) {
                                         {post.title}
                                     </h2>
                                     <p className="text-gray-400 mb-4 leading-relaxed">{post.excerpt}</p>
-                                    <div className="flex items-center justify-between">
+                                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                                         <div className="flex items-center gap-3 text-sm text-gray-500">
                                             <time>
                                                 {new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}

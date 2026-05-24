@@ -1,11 +1,40 @@
 'use client';
 
+import { Children, isValidElement } from 'react';
+import type { ReactNode } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
 import rehypeSlug from 'rehype-slug';
 import 'highlight.js/styles/atom-one-dark.css';
 import CodeBlock from '@/components/CodeBlock';
+import MermaidDiagram from '@/components/MermaidDiagram';
+
+// Recursively extract plain text from React children (handles highlighted spans too)
+function extractTextContent(node: ReactNode): string {
+    if (typeof node === 'string') return node;
+    if (typeof node === 'number') return String(node);
+    if (!node) return '';
+    if (Array.isArray(node)) return node.map(extractTextContent).join('');
+    if (isValidElement(node)) {
+        const props = node.props as { children?: ReactNode };
+        return extractTextContent(props.children);
+    }
+    return '';
+}
+
+function extractMermaidChart(children: ReactNode): string | null {
+    for (const child of Children.toArray(children)) {
+        if (isValidElement(child)) {
+            const props = child.props as { className?: string; children?: ReactNode };
+            if (props.className?.includes('language-mermaid')) {
+                const text = extractTextContent(props.children);
+                return text.trim() || null;
+            }
+        }
+    }
+    return null;
+}
 
 type Props = {
     content: string;
@@ -16,7 +45,7 @@ export default function MarkdownRenderer({ content }: Props) {
         <div className="prose-blog">
             <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
-                rehypePlugins={[rehypeSlug, rehypeHighlight]}
+                rehypePlugins={[rehypeSlug, [rehypeHighlight, { ignoreMissing: true }]]}
                 components={{
                     h1: ({ children }) => (
                         <h1 className="text-3xl font-bold text-white mt-10 mb-4">{children}</h1>
@@ -57,10 +86,12 @@ export default function MarkdownRenderer({ content }: Props) {
                             {children}
                         </blockquote>
                     ),
-                    // Block code: delegate to CodeBlock for header + copy button
-                    pre: ({ children }) => (
-                        <CodeBlock>{children}</CodeBlock>
-                    ),
+                    // Block code: render Mermaid diagrams inline, all others via CodeBlock
+                    pre: ({ children }) => {
+                        const chart = extractMermaidChart(children);
+                        if (chart !== null) return <MermaidDiagram chart={chart} />;
+                        return <CodeBlock>{children}</CodeBlock>;
+                    },
                     // Inline code only (block code is handled by pre above)
                     code: ({ children, className }) => {
                         const isBlock = className?.includes('language-');
