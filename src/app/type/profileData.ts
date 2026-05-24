@@ -32,6 +32,7 @@ type About = {
     aboutText2: string;
     professionalTech: string[];
     academicTech: string[];
+    aiTools: string[];
 }
 
 export type ProfileData = {

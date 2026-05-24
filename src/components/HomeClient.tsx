@@ -66,10 +66,7 @@ export default function HomeClient({ profileData }: { profileData: ProfileData }
                                     <p className="text-gray-400 mb-4 italic">Tech I&rsquo;m comfortable with professionally</p>
                                     <div className="flex flex-wrap gap-3">
                                         {profileData.about.professionalTech.map((tech: string) => (
-                                            <span
-                                                key={tech}
-                                                className="bg-blue-900/50 text-blue-300 px-4 py-2 rounded-full text-sm font-medium"
-                                            >
+                                            <span key={tech} className="bg-blue-900/50 text-blue-300 px-4 py-2 rounded-full text-sm font-medium">
                                                 {tech}
                                             </span>
                                         ))}
@@ -77,11 +74,16 @@ export default function HomeClient({ profileData }: { profileData: ProfileData }
                                     <p className="text-gray-400 mt-8 mb-4 italic">Tech I&rsquo;ve used in academic and personal projects:</p>
                                     <div className="flex flex-wrap gap-3">
                                         {profileData.about.academicTech.map((tech: string) => (
-                                            <span
-                                                key={tech}
-                                                className="bg-blue-900/50 text-blue-300 px-4 py-2 rounded-full text-sm font-medium"
-                                            >
+                                            <span key={tech} className="bg-blue-900/50 text-blue-300 px-4 py-2 rounded-full text-sm font-medium">
                                                 {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+                                    <p className="text-gray-400 mt-8 mb-4 italic">AI tools I use daily:</p>
+                                    <div className="flex flex-wrap gap-3">
+                                        {profileData.about.aiTools.map((tool: string) => (
+                                            <span key={tool} className="bg-violet-900/50 text-violet-300 px-4 py-2 rounded-full text-sm font-medium border border-violet-400/20">
+                                                {tool}
                                             </span>
                                         ))}
                                     </div>
@@ -131,10 +133,7 @@ export default function HomeClient({ profileData }: { profileData: ProfileData }
                                 <p className="text-gray-400 mb-4 italic">Tech I&rsquo;m comfortable with professionally</p>
                                 <div className="flex flex-wrap gap-3">
                                     {profileData.about.professionalTech.map((tech: string) => (
-                                        <span
-                                            key={tech}
-                                            className="bg-blue-900/50 text-blue-300 px-4 py-2 rounded-full text-sm font-medium"
-                                        >
+                                        <span key={tech} className="bg-blue-900/50 text-blue-300 px-4 py-2 rounded-full text-sm font-medium">
                                             {tech}
                                         </span>
                                     ))}
@@ -142,11 +141,16 @@ export default function HomeClient({ profileData }: { profileData: ProfileData }
                                 <p className="text-gray-400 mt-8 mb-4 italic">Tech I&rsquo;ve used in academic and personal projects:</p>
                                 <div className="flex flex-wrap gap-3">
                                     {profileData.about.academicTech.map((tech: string) => (
-                                        <span
-                                            key={tech}
-                                            className="bg-blue-900/50 text-blue-300 px-4 py-2 rounded-full text-sm font-medium"
-                                        >
+                                        <span key={tech} className="bg-blue-900/50 text-blue-300 px-4 py-2 rounded-full text-sm font-medium">
                                             {tech}
+                                        </span>
+                                    ))}
+                                </div>
+                                <p className="text-gray-400 mt-8 mb-4 italic">AI tools I use daily:</p>
+                                <div className="flex flex-wrap gap-3">
+                                    {profileData.about.aiTools.map((tool: string) => (
+                                        <span key={tool} className="bg-violet-900/50 text-violet-300 px-4 py-2 rounded-full text-sm font-medium border border-violet-400/20">
+                                            {tool}
                                         </span>
                                     ))}
                                 </div>
