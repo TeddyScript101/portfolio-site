@@ -56,7 +56,7 @@ export default function Header() {
                     </div>
 
                     <nav className="hidden md:flex space-x-8">
-                        {navItems.map((item) => (
+                        {navItems.slice(0, 2).map((item) => (
                             <button
                                 key={item.id}
                                 onClick={() => scrollToSection(item.id)}
@@ -72,6 +72,16 @@ export default function Header() {
                         >
                             Blog
                         </Link>
+                        {navItems.slice(2).map((item) => (
+                            <button
+                                key={item.id}
+                                onClick={() => scrollToSection(item.id)}
+                                className="text-white hover:text-blue-300 px-3 py-2 rounded-md text-xl font-medium transition-colors"
+                                aria-label={`Scroll to ${item.name} section`}
+                            >
+                                {item.name}
+                            </button>
+                        ))}
                     </nav>
 
                     <div className="md:hidden">
@@ -111,7 +121,7 @@ export default function Header() {
             {mobileMenuOpen && (
                 <div className="md:hidden bg-[#081B29]/95 backdrop-blur-sm">
                     <div className="px-4 pt-2 pb-3 space-y-1">
-                        {navItems.map((item) => (
+                        {navItems.slice(0, 2).map((item) => (
                             <button
                                 key={item.id}
                                 onClick={() => scrollToSection(item.id)}
@@ -128,6 +138,16 @@ export default function Header() {
                         >
                             Blog
                         </Link>
+                        {navItems.slice(2).map((item) => (
+                            <button
+                                key={item.id}
+                                onClick={() => scrollToSection(item.id)}
+                                className="text-white hover:bg-blue-800 hover:text-white block px-3 py-2 rounded-md text-base font-medium w-full text-left transition-colors"
+                                aria-label={`Scroll to ${item.name} section`}
+                            >
+                                {item.name}
+                            </button>
+                        ))}
                     </div>
                 </div>
             )}
