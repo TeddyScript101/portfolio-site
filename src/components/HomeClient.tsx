@@ -10,6 +10,58 @@ import { Education, ProfileData, Skill, Social, WorkExp } from '@/app/type/profi
 import Image from 'next/image';
 import Link from 'next/link';
 
+// Maps display names to skillicons.dev slugs
+const TECH_ICONS: Record<string, string> = {
+    'ReactJS':        'react',
+    'React Native':   'react',
+    'Next.js':        'nextjs',
+    'TypeScript':     'ts',
+    'Tailwind':       'tailwind',
+    'Material UI':    'materialui',
+    'styled-components': 'styledcomponents',
+    'Node.js':        'nodejs',
+    'Express':        'express',
+    'Nest.js':        'nestjs',
+    'Fastify':        'fastify',
+    'GraphQL':        'graphql',
+    'MongoDB':        'mongodb',
+    'PostgreSQL':     'postgres',
+    'MySQL':          'mysql',
+    'Docker':         'docker',
+    'Python':         'python',
+    'Java':           'java',
+    'C#':             'cs',
+    'ASP.NET':        'dotnet',
+    'Azure':          'azure',
+    'Kubernetes':     'kubernetes',
+    'Terraform':      'terraform',
+    'GCP':            'gcp',
+    'Jenkins':        'jenkins',
+    'Android Native': 'androidstudio',
+    'GitHub Copilot': 'github',
+    'ChatGPT':        'openai',
+    'Gemini':         'gemini',
+};
+
+function TechChip({ name, className }: { name: string; className: string }) {
+    const slug = TECH_ICONS[name];
+    return (
+        <span className={`inline-flex items-center gap-1.5 ${className}`}>
+            {slug && (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                    src={`https://skillicons.dev/icons?i=${slug}&theme=dark`}
+                    alt=""
+                    width={16}
+                    height={16}
+                    className="w-4 h-4 shrink-0"
+                />
+            )}
+            {name}
+        </span>
+    );
+}
+
 export default function HomeClient({ profileData }: { profileData: ProfileData }) {
     const { ref: skillsRef, inView: isSkillsInView } = useInView({
         threshold: 0.2,
@@ -66,25 +118,19 @@ export default function HomeClient({ profileData }: { profileData: ProfileData }
                                     <p className="text-gray-400 mb-4 italic">Tech I&rsquo;m comfortable with professionally</p>
                                     <div className="flex flex-wrap gap-3">
                                         {profileData.about.professionalTech.map((tech: string) => (
-                                            <span key={tech} className="bg-blue-900/50 text-blue-300 px-4 py-2 rounded-full text-sm font-medium">
-                                                {tech}
-                                            </span>
+                                            <TechChip key={tech} name={tech} className="bg-blue-900/50 text-blue-300 px-4 py-2 rounded-full text-sm font-medium" />
                                         ))}
                                     </div>
                                     <p className="text-gray-400 mt-8 mb-4 italic">Tech I&rsquo;ve used in academic and personal projects:</p>
                                     <div className="flex flex-wrap gap-3">
                                         {profileData.about.academicTech.map((tech: string) => (
-                                            <span key={tech} className="bg-blue-900/50 text-blue-300 px-4 py-2 rounded-full text-sm font-medium">
-                                                {tech}
-                                            </span>
+                                            <TechChip key={tech} name={tech} className="bg-blue-900/50 text-blue-300 px-4 py-2 rounded-full text-sm font-medium" />
                                         ))}
                                     </div>
                                     <p className="text-gray-400 mt-8 mb-4 italic">AI tools I use daily:</p>
                                     <div className="flex flex-wrap gap-3">
                                         {profileData.about.aiTools.map((tool: string) => (
-                                            <span key={tool} className="bg-violet-900/50 text-violet-300 px-4 py-2 rounded-full text-sm font-medium border border-violet-400/20">
-                                                {tool}
-                                            </span>
+                                            <TechChip key={tool} name={tool} className="bg-violet-900/50 text-violet-300 px-4 py-2 rounded-full text-sm font-medium border border-violet-400/20" />
                                         ))}
                                     </div>
                                 </div>
