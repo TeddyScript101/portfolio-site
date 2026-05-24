@@ -10,6 +10,7 @@ export type Project = {
     description: string;
     thumbnail: string;
     demoUrl: string;
+    githubUrl?: string;
     techStack: string[];
     relatedBlogs: RelatedBlog[];
     order: number;

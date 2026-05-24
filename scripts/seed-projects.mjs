@@ -24,6 +24,7 @@ const projects = [
             'A full-featured coffee shop e-commerce site with product browsing, a shopping cart, membership tiers, and sign-in. Built with Next.js and Tailwind CSS.',
         thumbnail: '/projects/beanworks-frontend.png',
         demoUrl: 'https://coffee-shop-frontend-sandy.vercel.app/',
+        githubUrl: 'https://github.com/TeddyScript101/coffee-shop-frontend',
         techStack: ['ReactJS', 'TypeScript', 'Tailwind', 'Storybook'],
         relatedBlogs: [
             {
@@ -40,6 +41,7 @@ const projects = [
             'The BeanWorks backend REST API documented with Swagger / OpenAPI 3.0. Covers auth, products, and orders with JWT-protected endpoints.',
         thumbnail: '/projects/beanworks-swagger.png',
         demoUrl: 'https://coffee-shop-frontend-sandy.vercel.app/swagger',
+        githubUrl: 'https://github.com/TeddyScript101/dotnetCoffeeShopBackend',
         techStack: ['ASP.NET', 'C#', 'PostgreSQL', 'Docker', 'Swagger'],
         relatedBlogs: [
             {
@@ -56,6 +58,7 @@ const projects = [
             'The same BeanWorks REST API presented through the Scalar interactive documentation UI, with client library snippets and live test requests.',
         thumbnail: '/projects/beanworks-scalar.png',
         demoUrl: 'https://coffee-shop-frontend-sandy.vercel.app/scalar',
+        githubUrl: 'https://github.com/TeddyScript101/dotnetCoffeeShopBackend',
         techStack: ['ASP.NET', 'C#', 'PostgreSQL', 'Docker', 'Scalar'],
         relatedBlogs: [
             {
