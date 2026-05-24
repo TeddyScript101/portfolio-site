@@ -10,15 +10,14 @@ import { Education, ProfileData, Skill, Social, WorkExp } from '@/app/type/profi
 import Image from 'next/image';
 import Link from 'next/link';
 
-// Helper to build icon URLs from two CDNs
-const si = (slug: string, color = '93c5fd') =>
+// CDN helpers
+const si = (slug: string, color = 'c4b5fd') =>
     `https://cdn.simpleicons.org/${slug}/${color}`;
 const sk = (slug: string) =>
     `https://skillicons.dev/icons?i=${slug}&theme=dark`;
 
-// Maps display names to icon URLs
+// URL-based icons (CDN)
 const TECH_ICONS: Record<string, string> = {
-    // Professional tech — skillicons.dev (handles dark theme natively)
     'ReactJS':        sk('react'),
     'React Native':   sk('react'),
     'Next.js':        sk('nextjs'),
@@ -32,7 +31,6 @@ const TECH_ICONS: Record<string, string> = {
     'PostgreSQL':     sk('postgres'),
     'MySQL':          sk('mysql'),
     'Docker':         sk('docker'),
-    // Academic tech
     'Python':         sk('python'),
     'Java':           sk('java'),
     'C#':             sk('cs'),
@@ -43,20 +41,34 @@ const TECH_ICONS: Record<string, string> = {
     'GCP':            sk('gcp'),
     'Jenkins':        sk('jenkins'),
     'Android Native': sk('androidstudio'),
-    // AI tools — Simple Icons (violet-300 tint to match chip colour)
-    'Claude Code':    si('anthropic',    'c4b5fd'),
-    'GitHub Copilot': si('github',       'c4b5fd'),
-    'ChatGPT':        si('openai',       'c4b5fd'),
-    'Gemini':         si('googlegemini', 'c4b5fd'),
+    'Claude Code':    si('anthropic'),
+    'GitHub Copilot': si('githubcopilot'),
+    'Gemini':         si('googlegemini'),
+};
+
+// Inline SVG icons for tools not available on any CDN (fill="currentColor" inherits chip text colour)
+const TECH_SVG: Record<string, React.ReactElement> = {
+    'ChatGPT': (
+        <svg viewBox="0 0 24 24" className="w-4 h-4 shrink-0" fill="currentColor" aria-hidden="true">
+            <path d="M22.282 9.821a5.985 5.985 0 00-.516-4.91 6.046 6.046 0 00-6.51-2.9A6.065 6.065 0 004.981 4.18a5.985 5.985 0 00-3.998 2.9 6.046 6.046 0 00.743 7.097 5.98 5.98 0 00.51 4.911 6.051 6.051 0 006.515 2.9A5.985 5.985 0 0013.26 24a6.056 6.056 0 005.772-4.206 5.99 5.99 0 003.997-2.9 6.056 6.056 0 00-.747-7.073zm-9.022 12.608a4.476 4.476 0 01-2.876-1.04l.141-.082 4.779-2.758a.795.795 0 00.392-.681v-6.737l2.02 1.168a.071.071 0 01.038.052v5.583a4.504 4.504 0 01-4.494 4.495zm-9.661-4.125a4.47 4.47 0 01-.535-3.014l.142.085 4.783 2.759a.771.771 0 00.78 0l5.843-3.369v2.332a.08.08 0 01-.033.062L9.74 19.95a4.5 4.5 0 01-6.141-1.646zM2.34 7.896a4.485 4.485 0 012.366-1.973V11.6a.766.766 0 00.388.676l5.815 3.355-2.02 1.168a.076.076 0 01-.072 0l-4.83-2.786A4.504 4.504 0 012.34 7.872zm16.597 3.855l-5.843-3.371 2.019-1.168a.075.075 0 01.072 0l4.83 2.786a4.494 4.494 0 01-.678 8.105v-5.678a.789.789 0 00-.4-.674zm2.01-3.023l-.141-.085-4.774-2.782a.776.776 0 00-.785 0L9.409 9.23V6.897a.066.066 0 01.028-.061l4.83-2.787a4.5 4.5 0 016.68 4.66zm-12.64 4.135l-2.02-1.164a.08.08 0 01-.038-.057V6.075a4.5 4.5 0 017.375-3.453l-.142.08-4.778 2.758a.795.795 0 00-.393.681zm1.097-2.365l2.602-1.5 2.607 1.5v2.999l-2.597 1.5-2.607-1.5z" />
+        </svg>
+    ),
+    'Antigravity IDE': (
+        <svg viewBox="0 0 24 24" className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" strokeWidth={1.5} aria-hidden="true">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423L16.5 15.75l.394 1.183a2.25 2.25 0 0 0 1.423 1.423L19.5 18.75l-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z" />
+        </svg>
+    ),
 };
 
 function TechChip({ name, className }: { name: string; className: string }) {
     const iconUrl = TECH_ICONS[name];
+    const iconSvg = TECH_SVG[name];
     return (
         <span className={`inline-flex items-center gap-1.5 ${className}`}>
-            {iconUrl && (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img src={iconUrl} alt="" width={16} height={16} className="w-4 h-4 shrink-0" />
+            {iconSvg ?? (iconUrl
+                ? /* eslint-disable-next-line @next/next/no-img-element */
+                  <img src={iconUrl} alt="" width={16} height={16} className="w-4 h-4 shrink-0" />
+                : null
             )}
             {name}
         </span>
