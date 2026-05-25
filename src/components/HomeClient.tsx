@@ -43,6 +43,7 @@ const TECH_ICONS: Record<string, string> = {
     'GCP':            sk('gcp'),
     'Jenkins':        sk('jenkins'),
     'Android Native': sk('androidstudio'),
+    'RabbitMQ':        si('rabbitmq', 'FF6600'),
     'Storybook':       si('storybook', 'ff4785'),
     'Swagger':         si('swagger', '85ea2d'),
     'Claude Code':     si('anthropic'),
