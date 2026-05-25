@@ -46,15 +46,15 @@ export default function MermaidDiagram({ chart }: { chart: string }) {
                     svgEl.setAttribute('viewBox', `0 0 ${naturalWidth} ${naturalHeight}`);
                 }
 
-                // On desktop: scale to fill the container (100% width).
-                // On mobile: render at natural size and let the wrapper scroll.
-                // We achieve this by setting a pixel min-width and letting CSS decide.
+                // Render at natural width, centered. Cap at 1000px so very wide
+                // diagrams don't overflow, and let overflow-x-auto handle mobile.
                 svgEl.removeAttribute('width');
                 svgEl.removeAttribute('height');
                 svgEl.style.display = 'block';
-                svgEl.style.width = '100%';
-                svgEl.style.minWidth = naturalWidth ? `${naturalWidth}px` : '600px';
+                svgEl.style.width = naturalWidth ? `${Math.min(naturalWidth, 1000)}px` : '100%';
+                svgEl.style.maxWidth = '100%';
                 svgEl.style.height = 'auto';
+                svgEl.style.margin = '0 auto';
             }
         }).catch((err) => {
             console.error('Mermaid render error:', err);
@@ -65,19 +65,8 @@ export default function MermaidDiagram({ chart }: { chart: string }) {
     }, [chart, id]);
 
     return (
-        // Outer: break out of the max-w-3xl text column, clip overflow
-        <div
-            className="relative my-8 overflow-hidden"
-            style={{
-                width: 'min(1100px, calc(100vw - 2rem))',
-                left: '50%',
-                transform: 'translateX(-50%)',
-            }}
-        >
-            {/* Inner: scrollable on mobile, natural size on desktop */}
-            <div className="overflow-x-auto py-2">
-                <div ref={containerRef} />
-            </div>
+        <div className="my-8 overflow-x-auto py-2">
+            <div ref={containerRef} />
         </div>
     );
 }
