@@ -53,11 +53,13 @@ export default function MermaidDiagram({ chart }: { chart: string }) {
                     svgEl.setAttribute('viewBox', `0 0 ${naturalWidth} ${attrHeight}`);
                 }
 
-                // Cap at 900px, center with margin auto, let overflow-x-auto handle mobile
+                // Scale up by 1.5x for readability, cap at 1100px.
+                // max-width: 100% keeps it from overflowing on mobile.
+                const displayWidth = naturalWidth ? Math.min(Math.round(naturalWidth * 1.5), 1100) : null;
                 svgEl.removeAttribute('width');
                 svgEl.removeAttribute('height');
                 svgEl.style.display = 'block';
-                svgEl.style.width = naturalWidth ? `${Math.min(naturalWidth, 900)}px` : '100%';
+                svgEl.style.width = displayWidth ? `${displayWidth}px` : '100%';
                 svgEl.style.maxWidth = '100%';
                 svgEl.style.height = 'auto';
                 svgEl.style.margin = '0 auto';
