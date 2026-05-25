@@ -38,20 +38,26 @@ export default function MermaidDiagram({ chart }: { chart: string }) {
 
             const svgEl = containerRef.current.querySelector('svg');
             if (svgEl) {
-                // Read the natural dimensions mermaid produced
-                const naturalWidth  = parseFloat(svgEl.getAttribute('width')  ?? '0');
-                const naturalHeight = parseFloat(svgEl.getAttribute('height') ?? '0');
+                // Read dimensions from viewBox — more reliable than width/height attributes
+                // because newer Mermaid versions set width="100%" which parseFloat reads as 100.
+                const viewBox = svgEl.getAttribute('viewBox');
+                const viewBoxWidth = viewBox ? parseFloat(viewBox.split(' ')[2]) : 0;
 
-                if (naturalWidth && naturalHeight && !svgEl.getAttribute('viewBox')) {
-                    svgEl.setAttribute('viewBox', `0 0 ${naturalWidth} ${naturalHeight}`);
+                // Fallback: try the width attribute only if it looks like a real pixel value
+                const attrWidth = parseFloat(svgEl.getAttribute('width') ?? '0');
+                const naturalWidth = viewBoxWidth || (attrWidth > 200 ? attrWidth : 0);
+
+                // Ensure viewBox is set so the SVG scales correctly
+                if (!viewBox && naturalWidth) {
+                    const attrHeight = parseFloat(svgEl.getAttribute('height') ?? '0');
+                    svgEl.setAttribute('viewBox', `0 0 ${naturalWidth} ${attrHeight}`);
                 }
 
-                // Render at natural width, centered. Cap at 1000px so very wide
-                // diagrams don't overflow, and let overflow-x-auto handle mobile.
+                // Cap at 900px, center with margin auto, let overflow-x-auto handle mobile
                 svgEl.removeAttribute('width');
                 svgEl.removeAttribute('height');
                 svgEl.style.display = 'block';
-                svgEl.style.width = naturalWidth ? `${Math.min(naturalWidth, 1000)}px` : '100%';
+                svgEl.style.width = naturalWidth ? `${Math.min(naturalWidth, 900)}px` : '100%';
                 svgEl.style.maxWidth = '100%';
                 svgEl.style.height = 'auto';
                 svgEl.style.margin = '0 auto';
