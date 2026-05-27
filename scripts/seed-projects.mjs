@@ -23,7 +23,9 @@ const projects = [
         description:
             'A full-featured coffee shop e-commerce site with product browsing, a shopping cart, membership tiers, and sign-in. Built with Next.js and Tailwind CSS.',
         thumbnail: '/projects/beanworks-frontend.png',
-        demoUrl: 'https://coffee-shop-frontend-sandy.vercel.app/',
+        demoUrls: [
+            { label: 'Live Demo', url: 'https://teddyyee-coffee-shop-frontend.vercel.app/' },
+        ],
         githubUrl: 'https://github.com/TeddyScript101/coffee-shop-frontend',
         techStack: ['ReactJS', 'TypeScript', 'Tailwind', 'Storybook'],
         relatedBlogs: [
@@ -38,9 +40,11 @@ const projects = [
         slug: 'beanworks-storybook',
         title: 'BeanWorks – Component Library (Storybook)',
         description:
-            'Interactive component library for the BeanWorks design system. Browse and test UI components — auth forms, product cards, membership cards, badges, and more — with live controls and documentation.',
+            'Interactive component library for the BeanWorks design system. Browse and test UI components including auth forms, product cards, membership cards, and badges, all with live controls and documentation.',
         thumbnail: '/projects/beanworks-storybook.png',
-        demoUrl: 'https://coffee-shop-storybook.vercel.app/?path=/docs/components-membership-membershipcard--docs',
+        demoUrls: [
+            { label: 'Live Demo', url: 'https://coffee-shop-storybook.vercel.app/?path=/docs/components-membership-membershipcard--docs' },
+        ],
         githubUrl: 'https://github.com/TeddyScript101/coffee-shop-frontend',
         techStack: ['Storybook', 'ReactJS', 'TypeScript', 'Tailwind'],
         relatedBlogs: [
@@ -52,14 +56,17 @@ const projects = [
         order: 2,
     },
     {
-        slug: 'beanworks-api-swagger',
-        title: 'BeanWorks – REST API (Swagger)',
+        slug: 'beanworks-api',
+        title: 'BeanWorks – REST API',
         description:
-            'The BeanWorks backend REST API documented with Swagger / OpenAPI 3.0. Covers auth, products, and orders with JWT-protected endpoints.',
+            'The BeanWorks backend REST API documented with both Swagger / OpenAPI 3.0 and Scalar. Covers auth, products, and orders with JWT-protected endpoints.',
         thumbnail: '/projects/beanworks-swagger.png',
-        demoUrl: 'https://coffee-shop-frontend-sandy.vercel.app/swagger',
+        demoUrls: [
+            { label: 'Swagger', url: 'https://teddyyee-coffee-shop-frontend.vercel.app/swagger' },
+            { label: 'Scalar', url: 'https://teddyyee-coffee-shop-frontend.vercel.app/scalar' },
+        ],
         githubUrl: 'https://github.com/TeddyScript101/dotnetCoffeeShopBackend',
-        techStack: ['ASP.NET', 'C#', 'PostgreSQL', 'Docker', 'Swagger'],
+        techStack: ['ASP.NET', 'C#', 'PostgreSQL', 'Docker', 'Swagger', 'Scalar'],
         relatedBlogs: [
             {
                 title: 'Building a coffee shop API with .NET 10, EF Core TPT inheritance, and JWT auth',
@@ -67,23 +74,6 @@ const projects = [
             },
         ],
         order: 3,
-    },
-    {
-        slug: 'beanworks-api-scalar',
-        title: 'BeanWorks – REST API (Scalar)',
-        description:
-            'The same BeanWorks REST API presented through the Scalar interactive documentation UI, with client library snippets and live test requests.',
-        thumbnail: '/projects/beanworks-scalar.png',
-        demoUrl: 'https://coffee-shop-frontend-sandy.vercel.app/scalar',
-        githubUrl: 'https://github.com/TeddyScript101/dotnetCoffeeShopBackend',
-        techStack: ['ASP.NET', 'C#', 'PostgreSQL', 'Docker', 'Scalar'],
-        relatedBlogs: [
-            {
-                title: 'Building a coffee shop API with .NET 10, EF Core TPT inheritance, and JWT auth',
-                slug: 'building-coffee-shop-api-dotnet-ef-core-tpt',
-            },
-        ],
-        order: 4,
     },
 ];
 
