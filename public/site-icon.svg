@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Teddy Yee coding icon">
+  <defs>
+    <linearGradient id="bg" x1="64" y1="48" x2="448" y2="464" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0ea5e9"/>
+      <stop offset="0.42" stop-color="#0f3d68"/>
+      <stop offset="1" stop-color="#071827"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="94" y1="92" x2="420" y2="424" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#123b61"/>
+      <stop offset="1" stop-color="#071827"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#020617" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <path d="M87 141H425M87 216H425M87 291H425M87 366H425M146 84V428M221 84V428M296 84V428M371 84V428" stroke="#8bd3ff" stroke-opacity="0.08" stroke-width="2"/>
+  <rect x="86" y="110" width="340" height="292" rx="42" fill="url(#panel)" stroke="#67e8f9" stroke-opacity="0.32" stroke-width="4" filter="url(#shadow)"/>
+  <rect x="86" y="110" width="340" height="70" rx="42" fill="#0b243b"/>
+  <path d="M86 152H426" stroke="#67e8f9" stroke-opacity="0.22" stroke-width="4"/>
+  <circle cx="136" cy="145" r="12" fill="#38bdf8"/>
+  <circle cx="176" cy="145" r="12" fill="#22c55e"/>
+  <circle cx="216" cy="145" r="12" fill="#f97316"/>
+  <path d="M190 328L136 284L190 240" fill="none" stroke="#7dd3fc" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M322 240L376 284L322 328" fill="none" stroke="#7dd3fc" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M286 218L226 350" fill="none" stroke="#34d399" stroke-width="30" stroke-linecap="round"/>
+</svg>
