@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { BlogPost } from '@/app/type/blogPost';
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 import MarkdownRenderer from '@/components/MarkdownRenderer';
 import { getBaseUrl } from '@/lib/baseUrl';
 
@@ -37,9 +38,9 @@ export default async function BlogPostPage({
     const readTime = calcReadTime(post.content);
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-[#081B29] via-[#0D2D4A] to-[#134074]">
+        <div className="min-h-screen bg-gradient-to-br from-[#081B29] via-[#0D2D4A] to-[#134074] flex flex-col">
             <Header />
-            <main className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32 pb-20 max-w-3xl">
+            <main className="flex-1 container mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32 pb-20 max-w-3xl">
                 {/* Back link */}
                 <Link
                     href="/blog"
@@ -119,6 +120,7 @@ export default async function BlogPostPage({
                 {/* Markdown content — strip leading # heading to avoid duplicating the title above */}
                 <MarkdownRenderer content={post.content.replace(/^#[^\n]*\n+/, '')} />
             </main>
+            <Footer />
         </div>
     );
 }

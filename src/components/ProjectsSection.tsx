@@ -1,53 +1,7 @@
-'use client';
-
 import Image from 'next/image';
 import Link from 'next/link';
 import { Project } from '@/app/type/project';
-
-// Re-use the same CDN helpers from HomeClient
-const si = (slug: string, color = 'c4b5fd') =>
-    `https://cdn.simpleicons.org/${slug}/${color}`;
-const sk = (slug: string) =>
-    `https://skillicons.dev/icons?i=${slug}&theme=dark`;
-
-const TECH_ICONS: Record<string, string> = {
-    'ReactJS':    sk('react'),
-    'Next.js':    sk('nextjs'),
-    'TypeScript': sk('ts'),
-    'Tailwind':   sk('tailwind'),
-    'Node.js':    sk('nodejs'),
-    'Express':    sk('express'),
-    'Nest.js':    sk('nestjs'),
-    'ASP.NET':    sk('dotnet'),
-    'C#':         sk('cs'),
-    'MongoDB':    sk('mongodb'),
-    'PostgreSQL': sk('postgres'),
-    'MySQL':      sk('mysql'),
-    'Docker':     sk('docker'),
-    'Python':     sk('python'),
-    'Java':       sk('java'),
-    'Azure':      sk('azure'),
-    'GCP':        sk('gcp'),
-    'Redis':      sk('redis'),
-    'Swagger':    si('swagger', '85ea2d'),
-    'Scalar':     si('scalar', 'c4b5fd'),
-    'Storybook':  si('storybook', 'ff4785'),
-    'EF Core':    sk('dotnet'),
-    'JWT':        si('jsonwebtokens', 'c4b5fd'),
-};
-
-function TechChip({ name }: { name: string }) {
-    const iconUrl = TECH_ICONS[name];
-    return (
-        <span className="inline-flex items-center gap-1.5 bg-blue-900/50 text-blue-300 px-3 py-1 rounded-full text-xs font-medium">
-            {iconUrl && (
-                /* eslint-disable-next-line @next/next/no-img-element */
-                <img src={iconUrl} alt="" width={14} height={14} className="w-3.5 h-3.5 shrink-0" />
-            )}
-            {name}
-        </span>
-    );
-}
+import { TechChip } from '@/components/TechChip';
 
 export default function ProjectsSection({ projects }: { projects: Project[] }) {
     return (

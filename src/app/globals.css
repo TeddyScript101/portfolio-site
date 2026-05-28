@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
 /* Let CodeBlock control the background — disable the hljs default */
 .hljs {
     background: transparent !important;
@@ -16,6 +21,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-brand-dark: #081B29;
 }
 
 @media (prefers-color-scheme: dark) {

@@ -1,5 +1,6 @@
 import { BlogPost } from '@/app/type/blogPost';
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 import BlogListClient from '@/components/BlogListClient';
 import { getBaseUrl } from '@/lib/baseUrl';
 
@@ -24,9 +25,9 @@ export default async function BlogPage() {
     const posts = await getPosts();
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-[#081B29] via-[#0D2D4A] to-[#134074]">
+        <div className="min-h-screen bg-gradient-to-br from-[#081B29] via-[#0D2D4A] to-[#134074] flex flex-col">
             <Header />
-            <main className="container mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32 pb-20 max-w-4xl">
+            <main className="flex-1 container mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32 pb-20 max-w-4xl">
                 <h1 className="text-4xl sm:text-5xl font-bold text-white mb-4">
                     Blog
                 </h1>
@@ -42,6 +43,7 @@ export default async function BlogPage() {
                     <BlogListClient initialPosts={posts} />
                 )}
             </main>
+            <Footer />
         </div>
     );
 }

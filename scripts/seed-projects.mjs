@@ -27,7 +27,7 @@ const projects = [
             { label: 'Live Demo', url: 'https://teddyyee-coffee-shop-frontend.vercel.app/' },
         ],
         githubUrl: 'https://github.com/TeddyScript101/coffee-shop-frontend',
-        techStack: ['ReactJS', 'TypeScript', 'Tailwind', 'Storybook'],
+        techStack: ['ReactJS', 'TypeScript', 'Tailwind', 'Storybook', 'Playwright'],
         relatedBlogs: [
             {
                 title: 'How I structured a React frontend for a coffee shop app',
@@ -66,7 +66,7 @@ const projects = [
             { label: 'Scalar', url: 'https://teddyyee-coffee-shop-frontend.vercel.app/scalar' },
         ],
         githubUrl: 'https://github.com/TeddyScript101/dotnetCoffeeShopBackend',
-        techStack: ['ASP.NET', 'C#', 'PostgreSQL', 'Docker', 'Swagger', 'Scalar'],
+        techStack: ['ASP.NET', 'C#', 'PostgreSQL', 'Docker', 'Swagger', 'Scalar', 'xUnit'],
         relatedBlogs: [
             {
                 title: 'Building a coffee shop API with .NET 10, EF Core TPT inheritance, and JWT auth',
