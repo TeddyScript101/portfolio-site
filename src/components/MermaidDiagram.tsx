@@ -7,6 +7,7 @@ mermaid.initialize({
     startOnLoad: false,
     theme: 'dark',
     themeVariables: {
+        fontSize: '15px',
         primaryColor: '#1e3a5f',
         primaryTextColor: '#e2e8f0',
         primaryBorderColor: '#3b82f6',
@@ -62,7 +63,7 @@ export default function MermaidDiagram({ chart }: { chart: string }) {
 
     return (
         <div className="my-8 overflow-x-auto py-2">
-            <div ref={containerRef} />
+            <div ref={containerRef} className="min-w-[700px]" />
         </div>
     );
 }
