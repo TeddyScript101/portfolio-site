@@ -38,31 +38,19 @@ export default function MermaidDiagram({ chart }: { chart: string }) {
 
             const svgEl = containerRef.current.querySelector('svg');
             if (svgEl) {
-                // Read dimensions from viewBox — more reliable than width/height attributes
-                // because newer Mermaid versions set width="100%" which parseFloat reads as 100.
+                // Ensure viewBox is set so the SVG scales proportionally at any width
                 const viewBox = svgEl.getAttribute('viewBox');
-                const viewBoxWidth = viewBox ? parseFloat(viewBox.split(' ')[2]) : 0;
-
-                // Fallback: try the width attribute only if it looks like a real pixel value
-                const attrWidth = parseFloat(svgEl.getAttribute('width') ?? '0');
-                const naturalWidth = viewBoxWidth || (attrWidth > 200 ? attrWidth : 0);
-
-                // Ensure viewBox is set so the SVG scales correctly
-                if (!viewBox && naturalWidth) {
-                    const attrHeight = parseFloat(svgEl.getAttribute('height') ?? '0');
-                    svgEl.setAttribute('viewBox', `0 0 ${naturalWidth} ${attrHeight}`);
+                if (!viewBox) {
+                    const w = parseFloat(svgEl.getAttribute('width') ?? '0');
+                    const h = parseFloat(svgEl.getAttribute('height') ?? '0');
+                    if (w && h) svgEl.setAttribute('viewBox', `0 0 ${w} ${h}`);
                 }
 
-                // Scale up by 1.5x for readability, cap at 1100px.
-                // max-width: 100% keeps it from overflowing on mobile.
-                const displayWidth = naturalWidth ? Math.min(Math.round(naturalWidth * 1.5), 1100) : null;
                 svgEl.removeAttribute('width');
                 svgEl.removeAttribute('height');
                 svgEl.style.display = 'block';
-                svgEl.style.width = displayWidth ? `${displayWidth}px` : '100%';
-                svgEl.style.maxWidth = '100%';
+                svgEl.style.width = '100%';
                 svgEl.style.height = 'auto';
-                svgEl.style.margin = '0 auto';
             }
         }).catch((err) => {
             console.error('Mermaid render error:', err);
