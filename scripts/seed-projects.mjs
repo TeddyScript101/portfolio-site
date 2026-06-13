@@ -62,8 +62,8 @@ const projects = [
             'The BeanWorks backend REST API documented with both Swagger / OpenAPI 3.0 and Scalar. Covers auth, products, and orders with JWT-protected endpoints.',
         thumbnail: '/projects/beanworks-swagger.png',
         demoUrls: [
-            { label: 'Swagger', url: 'https://teddyyee-coffee-shop-frontend.vercel.app/swagger' },
-            { label: 'Scalar', url: 'https://teddyyee-coffee-shop-frontend.vercel.app/scalar' },
+            { label: 'Swagger', url: 'https://coffeeshopapi.fly.dev/swagger/index.html' },
+            { label: 'Scalar', url: 'https://coffeeshopapi.fly.dev/scalar/#tag/health' },
         ],
         githubUrl: 'https://github.com/TeddyScript101/dotnetCoffeeShopBackend',
         techStack: ['ASP.NET', 'C#', 'PostgreSQL', 'Docker', 'Swagger', 'Scalar', 'xUnit'],
@@ -74,6 +74,20 @@ const projects = [
             },
         ],
         order: 3,
+    },
+    {
+        slug: 'basketball-shot-analyzer',
+        title: 'Basketball Shot Analyzer',
+        description:
+            'Upload a video of your jump shot and get instant AI-powered feedback. MediaPipe Pose detects release angle, elbow extension, knee bend, and shoulder alignment, then scores your form and generates prioritised coaching recommendations.',
+        thumbnail: '/projects/basketball-shot-analyzer.jpg',
+        demoUrls: [
+            { label: 'Live Demo', url: 'https://teddyscript101.github.io/basketball-shot-analyzer/demo' },
+        ],
+        githubUrl: 'https://github.com/TeddyScript101/basketball-shot-analyzer',
+        techStack: ['Next.js', 'TypeScript', 'FastAPI', 'Python', 'MediaPipe', 'PostgreSQL', 'Docker'],
+        relatedBlogs: [],
+        order: 4,
     },
 ];
 
