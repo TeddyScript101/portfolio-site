@@ -18,7 +18,7 @@ export const TECH_ICONS: Record<string, string> = {
     'MySQL':          sk('mysql'),
     'Docker':         sk('docker'),
     'FastAPI':        sk('fastapi'),
-    'MediaPipe':      '/icons/mediapipe.png',
+    'Google MediaPipe': '/icons/mediapipe.png',
     'Python':         sk('python'),
     'Java':           sk('java'),
     'C#':             sk('cs'),

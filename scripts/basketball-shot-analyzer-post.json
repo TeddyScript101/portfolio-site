@@ -2,7 +2,7 @@
   "slug": "basketball-shot-analyzer-mediapipe-fastapi",
   "title": "Building a basketball shot analyzer with MediaPipe, FastAPI, and Next.js",
   "date": "2026-06-13",
-  "tags": ["Python", "FastAPI", "MediaPipe", "Next.js", "Computer Vision", "Docker"],
+  "tags": ["Python", "FastAPI", "Google MediaPipe", "Next.js", "Computer Vision", "Docker"],
   "excerpt": "How I built a full-stack app that analyzes basketball jump shot form using MediaPipe Pose. Covers the Next.js App Router structure, the CV pipeline, release frame detection, and browser-side video trimming with FFmpeg.wasm.",
   "published": true,
   "githubUrl": "https://github.com/TeddyScript101/basketball-shot-analyzer",
