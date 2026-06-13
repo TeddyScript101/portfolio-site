@@ -24,6 +24,7 @@ export default function ProjectsSection({ projects }: { projects: Project[] }) {
                                     alt={project.title}
                                     fill
                                     className="object-cover"
+                                    style={{ objectPosition: project.thumbnailPosition ?? 'center' }}
                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                 />
                             </div>

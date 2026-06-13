@@ -81,6 +81,7 @@ const projects = [
         description:
             'Upload a video of your jump shot and get instant AI-powered feedback. MediaPipe Pose detects release angle, elbow extension, knee bend, and shoulder alignment, then scores your form and generates prioritised coaching recommendations.',
         thumbnail: '/projects/basketball-shot-analyzer.jpg',
+        thumbnailPosition: 'right center',
         demoUrls: [
             { label: 'Live Demo', url: 'https://teddyscript101.github.io/basketball-shot-analyzer/demo' },
         ],

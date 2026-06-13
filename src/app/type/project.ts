@@ -14,6 +14,7 @@ export type Project = {
     title: string;
     description: string;
     thumbnail: string;
+    thumbnailPosition?: string;
     demoUrls: DemoLink[];
     githubUrl?: string;
     techStack: string[];
