@@ -17,6 +17,7 @@ export const TECH_ICONS: Record<string, string> = {
     'PostgreSQL':     sk('postgres'),
     'MySQL':          sk('mysql'),
     'Docker':         sk('docker'),
+    'FastAPI':        sk('fastapi'),
     'Python':         sk('python'),
     'Java':           sk('java'),
     'C#':             sk('cs'),
