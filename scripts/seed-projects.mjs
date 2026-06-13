@@ -86,7 +86,12 @@ const projects = [
         ],
         githubUrl: 'https://github.com/TeddyScript101/basketball-shot-analyzer',
         techStack: ['Next.js', 'TypeScript', 'FastAPI', 'Python', 'MediaPipe', 'PostgreSQL', 'Docker'],
-        relatedBlogs: [],
+        relatedBlogs: [
+            {
+                title: 'Building a basketball shot analyzer with MediaPipe, FastAPI, and Next.js',
+                slug: 'basketball-shot-analyzer-mediapipe-fastapi',
+            },
+        ],
         order: 4,
     },
 ];
