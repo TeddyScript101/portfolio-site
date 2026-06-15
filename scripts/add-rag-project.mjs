@@ -20,7 +20,7 @@ const RAG_PROJECT = {
     slug: 'rag-portfolio-demo',
     title: 'AI Portfolio RAG Demo',
     description:
-        'An interactive chat interface that answers questions about my background using Retrieval-Augmented Generation. Documents are injected into the LLM context at runtime with streaming responses, inline citation source pills, and a document viewer panel. Includes a read-only /chat/demo route for sharing with interviewers without exposing API quota.',
+        'An interactive chat interface that answers questions about my background using Retrieval-Augmented Generation. Documents are injected into the LLM context at runtime with streaming responses, inline citation source pills, and a document viewer panel. Includes a /chat/demo route with pre-loaded responses that remains fully functional when API quota is exhausted, for reliable sharing with interviewers.',
     thumbnail: '/projects/rag-portfolio-demo.png',
     demoUrls: [
         { label: 'Live Demo', url: 'https://rag-demo-qnrx.vercel.app/' },
